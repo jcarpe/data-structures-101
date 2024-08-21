@@ -8,5 +8,5 @@ pre-commit:
   parallel: true
   commands:
     prettier:
-      glob: "*.{ts,tsx}"
+      glob: '*.{ts,tsx}'
       run: bunx prettier write {staged_files}
