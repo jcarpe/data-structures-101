@@ -1,0 +1,12 @@
+pre-push:
+  commands:
+    unit-tests:
+      tags: unit tests
+      run: bun test
+
+pre-commit:
+  parallel: true
+  commands:
+    prettier:
+      glob: "*.{ts,tsx}"
+      run: bunx prettier write {staged_files}
