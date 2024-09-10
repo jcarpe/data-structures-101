@@ -41,10 +41,19 @@ describe('HashTable', () => {
     expect(hashTable.lookup(123)).toBe('framed by Judge Doom')
     expect(hashTable.lookup('abc')).toBe('married to Roger Rabbit')
 
-    const hashTable2 = new HashTable<number | string, {name: string, toon: boolean}>(10)
+    const hashTable2 = new HashTable<
+      number | string,
+      { name: string; toon: boolean }
+    >(10)
     hashTable2.insert('Roger Rabbit', { name: 'Roger Rabbit', toon: true })
     hashTable2.insert('Jessica Rabbit', { name: 'Jessica Rabbit', toon: true })
-    expect(hashTable2.lookup('Roger Rabbit')).toEqual({ name: 'Roger Rabbit', toon: true })
-    expect(hashTable2.lookup('Jessica Rabbit')).toEqual({ name: 'Jessica Rabbit', toon: true })
+    expect(hashTable2.lookup('Roger Rabbit')).toEqual({
+      name: 'Roger Rabbit',
+      toon: true
+    })
+    expect(hashTable2.lookup('Jessica Rabbit')).toEqual({
+      name: 'Jessica Rabbit',
+      toon: true
+    })
   })
 })

@@ -38,8 +38,10 @@ class HashTable<K, V> {
 
   insert(key: K, value: V) {
     const index = this.hash(key)
-    
-    if (!this.table[index]) { this.table[index] = [] }
+
+    if (!this.table[index]) {
+      this.table[index] = []
+    }
 
     for (let entry of this.table[index]) {
       if (entry.key === key) {
@@ -53,28 +55,28 @@ class HashTable<K, V> {
 
   lookup(key: K) {
     const index = this.hash(key)
-    const entries = this.table[index];
+    const entries = this.table[index]
 
     if (entries) {
       for (let entry of entries) {
         if (entry.key === key) {
-          return entry.value;
+          return entry.value
         }
       }
     }
 
-    return undefined;
+    return undefined
   }
 
   remove(key: K) {
     const index = this.hash(key)
-    const entries = this.table[index];
+    const entries = this.table[index]
 
     if (entries) {
       for (let i = 0; i < entries.length; i++) {
         if (entries[i].key === key) {
-          entries.splice(i, 1);
-          return;
+          entries.splice(i, 1)
+          return
         }
       }
     }
