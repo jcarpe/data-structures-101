@@ -9,5 +9,4 @@ pre-commit:
   commands:
     prettier:
       tags: prettier
-      # glob: '**/*.{ts,tsx}'
       run: bunx prettier --write {staged_files}

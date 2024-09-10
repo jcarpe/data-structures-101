@@ -9,3 +9,4 @@ This just represents a bit of an academic exercise to build & illustrate basic d
 - Linked List
 - Stack
 - Queue
+- Hash Table
