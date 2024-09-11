@@ -60,7 +60,7 @@ class HashTable<K, V> {
    * @param key The key of the entry
    * @param value The value of the entry
    */
-  insert(key: K, value: V) {
+  public insert(key: K, value: V) {
     const index = this.hash(key)
 
     if (!this.table[index]) {
@@ -82,7 +82,7 @@ class HashTable<K, V> {
    * @param key The key to look up
    * @returns {any | undefined} The value of the key, or undefined if the key is not found
    */
-  lookup(key: K) {
+  public lookup(key: K) {
     const index = this.hash(key)
     const entries = this.table[index]
 
@@ -101,7 +101,7 @@ class HashTable<K, V> {
    * Remove a key-value pair from the hash table
    * @param key The key to remove
    */
-  remove(key: K) {
+  public remove(key: K) {
     const index = this.hash(key)
     const entries = this.table[index]
 
