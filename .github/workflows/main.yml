@@ -2,9 +2,9 @@ name: Run Tests
 
 on:
   push:
-    branches: ["main"]
+    branches: ['main']
   pull_request:
-    branches: ["main"]
+    branches: ['main']
 
 jobs:
   test:
@@ -19,4 +19,3 @@ jobs:
           fetch-depth: 0
       - run: bun install --frozen-lockfile
       - run: bun test --coverage
-          
