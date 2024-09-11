@@ -3,14 +3,27 @@ type HashTableEntry<K, V> = {
   value: V
 }
 
+/**
+ * HashTable --
+ * Note that this is for academic purposes and a Javascript Map() likely suits the same needs.
+ * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map
+ */
 class HashTable<K, V> {
   private size: number
   private table: Array<Array<HashTableEntry<K, V>>>
 
+  /**
+   * Get the size of the hash table
+   * @returns {number} The size of the hash table
+   */
   get tableSize(): number {
     return this.size
   }
 
+  /**
+   * Create a new HashTable
+   * @param size The size of the hash table
+   */
   constructor(size: number) {
     this.size = size
     this.table = []
@@ -29,13 +42,25 @@ class HashTable<K, V> {
 
     let hash = 0
     for (let i = 0; i < keyString.length; i++) {
+
+      // bit shift 5 positions to the left and subtract the hash value
+      // to help in spreading out the bits of the hash value, making
+      // the hash more uniformly distributed & decrease likelihood of
+      // collisions
       hash = (hash << 5) - hash + keyString.charCodeAt(i)
-      hash |= 0 // Convert to 32bit integer
+
+      // Convert to 32bit integer
+      hash |= 0
     }
 
     return Math.abs(hash) % this.size
   }
 
+  /**
+   * Insert a new key-value pair into the hash table
+   * @param key The key of the entry
+   * @param value The value of the entry
+   */
   insert(key: K, value: V) {
     const index = this.hash(key)
 
@@ -53,6 +78,11 @@ class HashTable<K, V> {
     this.table[index]!.push({ key, value })
   }
 
+  /**
+   * Look up a value in the hash table
+   * @param key The key to look up
+   * @returns {any | undefined} The value of the key, or undefined if the key is not found
+   */
   lookup(key: K) {
     const index = this.hash(key)
     const entries = this.table[index]
@@ -68,6 +98,10 @@ class HashTable<K, V> {
     return undefined
   }
 
+  /**
+   * Remove a key-value pair from the hash table
+   * @param key The key to remove
+   */
   remove(key: K) {
     const index = this.hash(key)
     const entries = this.table[index]
