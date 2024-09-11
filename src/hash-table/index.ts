@@ -36,7 +36,7 @@ class HashTable<K, V> {
     return Math.abs(hash) % this.size
   }
 
-  insert(key: K, value: V) {
+  public insert(key: K, value: V) {
     const index = this.hash(key)
 
     if (!this.table[index]) {
@@ -53,7 +53,7 @@ class HashTable<K, V> {
     this.table[index]!.push({ key, value })
   }
 
-  lookup(key: K) {
+  public lookup(key: K) {
     const index = this.hash(key)
     const entries = this.table[index]
 
@@ -68,7 +68,7 @@ class HashTable<K, V> {
     return undefined
   }
 
-  remove(key: K) {
+  public remove(key: K) {
     const index = this.hash(key)
     const entries = this.table[index]
 
