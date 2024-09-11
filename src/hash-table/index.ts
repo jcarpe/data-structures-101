@@ -42,7 +42,6 @@ class HashTable<K, V> {
 
     let hash = 0
     for (let i = 0; i < keyString.length; i++) {
-
       // bit shift 5 positions to the left and subtract the hash value
       // to help in spreading out the bits of the hash value, making
       // the hash more uniformly distributed & decrease likelihood of
