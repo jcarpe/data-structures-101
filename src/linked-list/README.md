@@ -19,26 +19,26 @@ A Linked List is a data structure that consists of nodes where each node contain
 
 ```typescript
 // initialize with a type defining the data contents of the list
-const linkedList = new LinkedList<number>();
+const linkedList = new LinkedList<number>()
 ```
 
 ### Adding Nodes
 
 ```typescript
-linkedList.add(1);
-linkedList.add(2);
+linkedList.add(1)
+linkedList.add(2)
 ```
 
 ### Retrieving the Head
 
 ```typescript
-const head = linkedList.head; // 1
+const head = linkedList.head // 1
 ```
 
 ### Retrieving the Size
 
 ```typescript
-const size = linkedList.size; // 2
+const size = linkedList.size // 2
 ```
 
 ## API
@@ -57,21 +57,20 @@ const size = linkedList.size; // 2
 - `addToTail(value: T): void`: Adds a node to the end of the linked list.
 - `deleteNode(data: T): void`: Deletes a node from the linked list.
 
-
 ## Example
 
 ```typescript
-const linkedList = new LinkedList<number>();
+const linkedList = new LinkedList<number>()
 
-linkedList.add(1);
-linkedList.add(2);
+linkedList.add(1)
+linkedList.add(2)
 
-console.log(linkedList.head); // Output: 1
-console.log(linkedList.size); // Output: 2
+console.log(linkedList.head) // Output: 1
+console.log(linkedList.size) // Output: 2
 
-linkedList.remove(1);
-console.log(linkedList.head); // Output: 2
-console.log(linkedList.size); // Output: 1
+linkedList.remove(1)
+console.log(linkedList.head) // Output: 2
+console.log(linkedList.size) // Output: 1
 ```
 
 ## Notes
