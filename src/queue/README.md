@@ -18,34 +18,34 @@ A Queue is a linear data structure that allows adding and removing elements in a
 ### Creating a Queue
 
 ```typescript
-import Queue from './index';
+import Queue from './index'
 
-const queue = new Queue<number>();
+const queue = new Queue<number>()
 ```
 
 ### Adding Items
 
 ```typescript
-queue.enqueue(1);
-queue.enqueue(2);
+queue.enqueue(1)
+queue.enqueue(2)
 ```
 
 ### Removing Items
 
 ```typescript
-const item = queue.dequeue(); // 1
+const item = queue.dequeue() // 1
 ```
 
 ### Retrieving the Front Item
 
 ```typescript
-const frontItem = queue.front; // 2
+const frontItem = queue.front // 2
 ```
 
 ### Getting the Size
 
 ```typescript
-const size = queue.size; // 1
+const size = queue.size // 1
 ```
 
 ## API
@@ -65,20 +65,20 @@ const size = queue.size; // 1
 ## Example
 
 ```typescript
-import Queue from './index';
+import Queue from './index'
 
-const queue = new Queue<number>();
+const queue = new Queue<number>()
 
-queue.enqueue(1);
-queue.enqueue(2);
+queue.enqueue(1)
+queue.enqueue(2)
 
-console.log(queue.front); // Output: 1
-console.log(queue.size); // Output: 2
+console.log(queue.front) // Output: 1
+console.log(queue.size) // Output: 2
 
-const item = queue.dequeue();
-console.log(item); // Output: 1
-console.log(queue.front); // Output: 2
-console.log(queue.size); // Output: 1
+const item = queue.dequeue()
+console.log(item) // Output: 1
+console.log(queue.front) // Output: 2
+console.log(queue.size) // Output: 1
 ```
 
 ## Notes
