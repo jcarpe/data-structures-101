@@ -8,7 +8,7 @@ This just represents a bit of an academic exercise to build & illustrate basic d
 
 ## Data Structures
 
-- Linked List
-- Stack
-- Queue
+- [Linked List](./src/linked-list)
+- [Stack](./src/stack)
+- [Queue](./src/queue)
 - [Hash Table](./src/hash-table)

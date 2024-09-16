@@ -8,9 +8,9 @@ A Hash Table is a data structure that maps keys to values for highly efficient l
 
 ## Features
 
-- Customizable Size: Initialize the hash table with a specific size.
-- Hash Function: Uses a custom hash function to convert keys into hash values.
-- Separate Chaining: Handles collisions using separate chaining with linked lists.
+- **Customizable Size**: Initialize the hash table with a specific size.
+- **Hash Function**: Uses a custom hash function to convert keys into hash values.
+- **Separate Chaining**: Handles collisions using separate chaining with linked lists.
 
 ## Usage
 
