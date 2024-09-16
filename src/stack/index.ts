@@ -1,5 +1,9 @@
 /**
  * Stack data structure that follows the Last In First Out (LIFO) principle.
+ * 
+ * Note: his does not really do anything more than an array, but it is a good
+ * example of a simple Stack data structure and restricts functionality to only
+ * what is needed.
  */
 class Stack<T> {
   private _stack: T[] = []
