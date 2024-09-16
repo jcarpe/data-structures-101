@@ -18,34 +18,34 @@ A Stack is a linear data structure that allows adding and removing elements in a
 ### Creating a Stack
 
 ```typescript
-import Stack from './index';
+import Stack from './index'
 
-const stack = new Stack<number>();
+const stack = new Stack<number>()
 ```
 
 ### Adding Values
 
 ```typescript
-stack.push(1);
-stack.push(2);
+stack.push(1)
+stack.push(2)
 ```
 
 ### Removing Values
 
 ```typescript
-const value = stack.pop(); // 2
+const value = stack.pop() // 2
 ```
 
 ### Retrieving the Top Value
 
 ```typescript
-const topValue = stack.top; // 1
+const topValue = stack.top // 1
 ```
 
 ### Getting the Length
 
 ```typescript
-const length = stack.length; // 1
+const length = stack.length // 1
 ```
 
 ## API
@@ -65,20 +65,20 @@ const length = stack.length; // 1
 ## Example
 
 ```typescript
-import Stack from './index';
+import Stack from './index'
 
-const stack = new Stack<number>();
+const stack = new Stack<number>()
 
-stack.push(1);
-stack.push(2);
+stack.push(1)
+stack.push(2)
 
-console.log(stack.top); // Output: 2
-console.log(stack.length); // Output: 2
+console.log(stack.top) // Output: 2
+console.log(stack.length) // Output: 2
 
-const value = stack.pop();
-console.log(value); // Output: 2
-console.log(stack.top); // Output: 1
-console.log(stack.length); // Output: 1
+const value = stack.pop()
+console.log(value) // Output: 2
+console.log(stack.top) // Output: 1
+console.log(stack.length) // Output: 1
 ```
 
 ## Notes
