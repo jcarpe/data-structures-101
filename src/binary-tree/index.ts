@@ -69,5 +69,31 @@ export default class BinaryTree<Number> {
     return recurseNodes(this._root)
   }
 
-  remove(value: Number): void {}
+  remove(value: Number): void {
+    const recurseNodes = (node: Node<Number> | null): Node<Number> | null => {
+      if (!node) {
+        return null
+      }
+
+      if (value < node.value) {
+        node.left = recurseNodes(node.left)
+      } else if (value > node.value) {
+        node.right = recurseNodes(node.right)
+      } else {
+        if (node.left === null && node.right === null) {
+          node = null
+        } else if (node.left == null) {
+          node = node.right
+        } else if (node.right == null) {
+          node = node.left
+        } else {
+          // TODO: handle a node w/ two children
+        }
+      }
+
+      return node
+    }
+
+    recurseNodes(this._root)
+  }
 }

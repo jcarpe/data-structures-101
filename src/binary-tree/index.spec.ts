@@ -47,16 +47,18 @@ describe('BinaryTree', () => {
     expect(node).toBeNull()
   })
 
-  test.skip('should remove a value from the tree', () => {
+  test('should remove a value from the tree', () => {
     tree.insert(10)
     tree.insert(5)
     tree.insert(15)
 
     tree.remove(5)
     expect(tree.root?.left).toBeNull()
+
+    // TODO: more complex removal assertions here
   })
 
-  test.skip('should handle removing a non-existent value gracefully', () => {
+  test('should handle removing a non-existent value gracefully', () => {
     tree.insert(10)
     tree.insert(5)
     tree.insert(15)
