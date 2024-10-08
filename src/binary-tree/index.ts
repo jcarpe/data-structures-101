@@ -1,4 +1,4 @@
-class Node<Number> {
+export class Node<Number> {
   value: Number
   left: Node<Number> | null
   right: Node<Number> | null
@@ -7,6 +7,14 @@ class Node<Number> {
     this.value = value
     this.left = null
     this.right = null
+  }
+
+  findMin(): Node<Number> {
+    if (!this.left) {
+      return this
+    } else {
+      return this.left.findMin()
+    }
   }
 }
 
@@ -19,6 +27,26 @@ export default class BinaryTree<Number> {
 
   constructor(initialValue?: Number) {
     this._root = initialValue ? new Node(initialValue) : null
+  }
+
+  visualize(): void {
+    const recurseNodes = (node: Node<Number> | null, depth: number): void => {
+      if (!node) {
+        return
+      }
+
+      recurseNodes(node.right, depth + 1)
+
+      console.log('  '.repeat(depth) + node.value)
+
+      recurseNodes(node.left, depth + 1)
+    }
+
+    recurseNodes(this._root, 0)
+  }
+
+  clear(): void {
+    this._root = null
   }
 
   insert(value: Number): void {
@@ -87,7 +115,10 @@ export default class BinaryTree<Number> {
         } else if (node.right == null) {
           node = node.left
         } else {
-          // TODO: handle a node w/ two children
+          const minRight = node.right.findMin()
+
+          node.value = minRight.value;
+          node.right = recurseNodes(node.right)
         }
       }
 

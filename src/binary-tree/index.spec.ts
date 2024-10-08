@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from 'bun:test'
-import BinaryTree from '.'
+import BinaryTree, { Node } from '.'
 
 describe('BinaryTree', () => {
   let tree: BinaryTree<Number>
@@ -38,6 +38,16 @@ describe('BinaryTree', () => {
     expect(node?.value).toBe(5)
   })
 
+  test('should find a minimum value in the tree from the root', () => {
+    tree.insert(10)
+    tree.insert(5)
+    tree.insert(15)
+
+    const minNode = tree.root?.findMin()
+    expect(minNode).not.toBeNull()
+    expect(minNode?.value).toBe(5)
+  })
+
   test('should return null when finding a non-existent value', () => {
     tree.insert(10)
     tree.insert(5)
@@ -45,6 +55,15 @@ describe('BinaryTree', () => {
 
     const node = tree.find(20)
     expect(node).toBeNull()
+  })
+
+  test('should clear the tree', () => {
+    tree.insert(10)
+    tree.insert(5)
+    tree.insert(15)
+    tree.clear()
+
+    expect(tree.root).toBeNull()
   })
 
   test('should remove a value from the tree', () => {
@@ -55,7 +74,20 @@ describe('BinaryTree', () => {
     tree.remove(5)
     expect(tree.root?.left).toBeNull()
 
-    // TODO: more complex removal assertions here
+    tree.clear()
+
+    // assert deeply nested min in tree
+    tree.insert(10)
+    tree.insert(5)
+    tree.insert(15)
+    tree.insert(12)
+    tree.insert(20)
+    tree.insert(18)
+    tree.insert(25)
+
+    tree.remove(15)
+
+    expect(tree.root?.right?.value).toBe(18)
   })
 
   test('should handle removing a non-existent value gracefully', () => {
