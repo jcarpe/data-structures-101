@@ -101,7 +101,7 @@ export default class BinaryTree<Number> {
         } else {
           const minRight = node.right.findMin()
 
-          node.value = minRight.value;
+          node.value = minRight.value
           node.right = recurseNodes(node.right)
         }
       }
