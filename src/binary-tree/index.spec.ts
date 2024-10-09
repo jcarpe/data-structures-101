@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, test } from 'bun:test'
-import BinaryTree, { Node } from '.'
+import BinaryTree from '.'
 
 describe('BinaryTree', () => {
   let tree: BinaryTree<Number>
