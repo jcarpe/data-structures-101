@@ -9,4 +9,4 @@ pre-commit:
   commands:
     prettier:
       tags: prettier
-      run: bunx prettier --write {staged_files}
+      run: bunx prettier --write {staged_files} && git add {staged_files}
