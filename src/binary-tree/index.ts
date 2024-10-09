@@ -29,22 +29,6 @@ export default class BinaryTree<Number> {
     this._root = initialValue ? new Node(initialValue) : null
   }
 
-  visualize(): void {
-    const recurseNodes = (node: Node<Number> | null, depth: number): void => {
-      if (!node) {
-        return
-      }
-
-      recurseNodes(node.right, depth + 1)
-
-      console.log('  '.repeat(depth) + node.value)
-
-      recurseNodes(node.left, depth + 1)
-    }
-
-    recurseNodes(this._root, 0)
-  }
-
   clear(): void {
     this._root = null
   }
@@ -117,7 +101,7 @@ export default class BinaryTree<Number> {
         } else {
           const minRight = node.right.findMin()
 
-          node.value = minRight.value
+          node.value = minRight.value;
           node.right = recurseNodes(node.right)
         }
       }
