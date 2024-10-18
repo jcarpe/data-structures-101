@@ -22,10 +22,16 @@ describe('BinaryTree', () => {
     tree.insert(10)
     tree.insert(5)
     tree.insert(15)
+    tree.insert(20)
+    tree.insert(12)
+    tree.insert(11)
 
     expect(tree.root?.value).toBe(10)
     expect(tree.root?.left?.value).toBe(5)
     expect(tree.root?.right?.value).toBe(15)
+    expect(tree.root?.right?.right?.value).toBe(20)
+    expect(tree.root?.right?.left?.value).toBe(12)
+    expect(tree.root?.right?.left?.left?.value).toBe(11)
   })
 
   test('should find a value in the tree', () => {
