@@ -61,21 +61,27 @@ export default class BinaryTree<Number> {
     }
 
     const recurseNodes = (node: Node<Number>): void => {
-      if (value < node.value && !node.left) {
+      if (value <= node.value) {
         // if the value we want to insert is less than the current node's value and
         // the left child is null, we insert the value as the left child
-        node.left = new Node(value)
-        return
-      } else if (!node.right) {
-        // if the value we want to insert is greater than the current node's value and
-        // the right child is null, we insert the value as the right child
-        node.right = new Node(value)
-        return
+        if (!node.left) {
+          node.left = new Node(value)
+        } else {
+          // if the left child is not null, we recurse to the left
+          recurseNodes(node.left)
+        }
       }
 
-      // if the value we want to insert is greater than or equal to the current node's
-      // value, we recurse to the right
-      recurseNodes(node.right)
+      if (value > node.value) {
+        // if the value we want to insert is greater than the current node's value and
+        // the right child is null, we insert the value as the right child
+        if (!node.right) {
+          node.right = new Node(value)
+        } else {
+          // if the right child is not null, we recurse to the right
+          recurseNodes(node.right)
+        }
+      }
     }
 
     recurseNodes(this._root)
