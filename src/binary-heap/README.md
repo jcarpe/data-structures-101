@@ -11,7 +11,6 @@ Binary heaps are commonly used to implement priority queues, where the highest (
 - [Installation](#installation)
 - [Usage](#usage)
 - [API](#api)
-- [Example](#example)
 
 ## Installation
 
