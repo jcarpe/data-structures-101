@@ -13,3 +13,4 @@ This just represents a bit of an academic exercise to build & illustrate basic d
 - [Queue](./src/queue)
 - [Hash Table](./src/hash-table)
 - [Binary Search Tree](./src/binary-tree)
+- [Binary Heape](./src/binary-heap) (example MIN implementation)
