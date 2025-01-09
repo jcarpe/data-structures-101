@@ -15,4 +15,4 @@ Notably, this is an academic exercise. Many of these data structures are redunda
 - [Queue](./src/queue)
 - [Hash Table](./src/hash-table)
 - [Binary Search Tree](./src/binary-tree)
-- [Binary Heape](./src/binary-heap) (example MIN implementation)
+- [Binary Heap](./src/binary-heap) (example MIN implementation)
