@@ -27,28 +27,26 @@ export class Node<Number> {
 export default class BinaryTree<Number> {
   _root: Node<Number> | null
 
-  private insertRecursion = (node: Node<Number>, value: Number): void => {
-    if (value <= node.value) {
-      if (!node.left) {
-        // if the value we want to insert is less than the current node's value and
-        // the left child is null, we insert the value as the left child
-        node.left = new Node(value)
-      } else {
-        // if the left child is not null, we recurse to the left
-        this.insertRecursion(node.left, value)
-      }
+  private insertRecursion = (
+    node: Node<Number> | null,
+    value: Number
+  ): Node<Number> => {
+    if (node === null) {
+      return new Node(value)
     }
 
-    if (value > node.value) {
-      if (!node.right) {
-        // if the value we want to insert is greater than the current node's value and
-        // the right child is null, we insert the value as the right child
-        node.right = new Node(value)
-      } else {
-        // if the right child is not null, we recurse to the right
-        this.insertRecursion(node.right, value)
-      }
+    if (value <= node.value) {
+      // if the left child is not null, we recurse to the left
+      node.left = this.insertRecursion(node.left, value)
+    } else if (value > node.value) {
+      // if the right child is not null, we recurse to the right
+      node.right = this.insertRecursion(node.right, value)
+    } else {
+      // if the value is equal to the current node's value, we don't insert it
+      return node
     }
+
+    return node
   }
 
   private findRecursion = (

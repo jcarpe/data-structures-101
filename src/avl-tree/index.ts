@@ -32,7 +32,7 @@ class AVLTree<Number> {
     node: AVLNode<Number> | null,
     value: Number
   ): AVLNode<Number> => {
-    if (node == null) {
+    if (node === null) {
       return new AVLNode(value)
     }
 
