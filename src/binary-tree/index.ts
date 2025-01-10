@@ -1,4 +1,4 @@
-class Node<Number> {
+export class Node<Number> {
   value: Number
   left: Node<Number> | null
   right: Node<Number> | null
@@ -27,6 +27,84 @@ class Node<Number> {
 export default class BinaryTree<Number> {
   _root: Node<Number> | null
 
+  private insertRecursion = (node: Node<Number>, value: Number): void => {
+    if (value <= node.value) {
+      if (!node.left) {
+        // if the value we want to insert is less than the current node's value and
+        // the left child is null, we insert the value as the left child
+        node.left = new Node(value)
+      } else {
+        // if the left child is not null, we recurse to the left
+        this.insertRecursion(node.left, value)
+      }
+    }
+
+    if (value > node.value) {
+      if (!node.right) {
+        // if the value we want to insert is greater than the current node's value and
+        // the right child is null, we insert the value as the right child
+        node.right = new Node(value)
+      } else {
+        // if the right child is not null, we recurse to the right
+        this.insertRecursion(node.right, value)
+      }
+    }
+  }
+
+  private findRecursion = (
+    node: Node<Number> | null,
+    value: Number
+  ): Node<Number> | null => {
+    if (!node) {
+      return null
+    } else if (node.value === value) {
+      // we found the node with the value we are looking for
+      return node
+    } else if (value < node.value) {
+      // traverse left
+      return this.findRecursion(node.left, value)
+    }
+
+    // traverse right
+    return this.findRecursion(node.right, value)
+  }
+
+  private removeRecursion = (
+    node: Node<Number> | null,
+    value: Number
+  ): Node<Number> | null => {
+    if (!node) {
+      return null
+    } else if (value < node.value) {
+      // if the value we want to remove is less than the current node's value,
+      // we recurse to the left
+      node.left = this.removeRecursion(node.left, value)
+    } else if (value > node.value) {
+      // if the value we want to remove is greater than the current node's value,
+      // we recurse to the right
+      node.right = this.removeRecursion(node.right, value)
+    } else {
+      if (node.left === null && node.right === null) {
+        // if the node has no children, we can just remove it
+        node = null
+      } else if (node.left == null) {
+        // if the node has only a right child, we can replace the node with its right child
+        node = node.right
+      } else if (node.right == null) {
+        // if the node has only a left child, we can replace the node with its left child
+        node = node.left
+      } else {
+        // if the node has two children, we find the minimum value in the right subtree
+        const minRight = node.right.findMin()
+
+        node.value = minRight.value
+        node.right = this.removeRecursion(node.right, value)
+      }
+    }
+
+    return node
+  }
+
   /**
    * Returns the root node of the binary tree
    * @returns {Node<Number> | null} The root node of the binary tree
@@ -46,7 +124,7 @@ export default class BinaryTree<Number> {
   /**
    * Clears the binary tree
    */
-  clear(): void {
+  public clear(): void {
     this._root = null
   }
 
@@ -54,37 +132,13 @@ export default class BinaryTree<Number> {
    * Inserts a value into the binary tree
    * @param {Number} value The value to insert into the binary tree
    */
-  insert(value: Number): void {
+  public insert(value: Number): void {
     if (!this._root) {
       this._root = new Node(value)
       return
     }
 
-    const recurseNodes = (node: Node<Number>): void => {
-      if (value <= node.value) {
-        if (!node.left) {
-          // if the value we want to insert is less than the current node's value and
-          // the left child is null, we insert the value as the left child
-          node.left = new Node(value)
-        } else {
-          // if the left child is not null, we recurse to the left
-          recurseNodes(node.left)
-        }
-      }
-
-      if (value > node.value) {
-        if (!node.right) {
-          // if the value we want to insert is greater than the current node's value and
-          // the right child is null, we insert the value as the right child
-          node.right = new Node(value)
-        } else {
-          // if the right child is not null, we recurse to the right
-          recurseNodes(node.right)
-        }
-      }
-    }
-
-    recurseNodes(this._root)
+    this.insertRecursion(this._root, value)
   }
 
   /**
@@ -92,63 +146,15 @@ export default class BinaryTree<Number> {
    * @param {Number} value The value to find in the binary tree
    * @returns {Node<Number> | null} The node containing the value or null if the value is not found
    */
-  find(value: Number): Node<Number> | null {
-    const recurseNodes = (node: Node<Number> | null): Node<Number> | null => {
-      if (!node) {
-        return null
-      } else if (node.value === value) {
-        // we found the node with the value we are looking for
-        return node
-      } else if (value < node.value) {
-        // traverse left
-        return recurseNodes(node.left)
-      }
-
-      // traverse right
-      return recurseNodes(node.right)
-    }
-
-    return recurseNodes(this._root)
+  public find(value: Number): Node<Number> | null {
+    return this.findRecursion(this._root, value)
   }
 
   /**
    * Removes a value from the binary tree
    * @param {Number} value The value to remove from the binary tree
    */
-  remove(value: Number): void {
-    const recurseNodes = (node: Node<Number> | null): Node<Number> | null => {
-      if (!node) {
-        return null
-      } else if (value < node.value) {
-        // if the value we want to remove is less than the current node's value,
-        // we recurse to the left
-        node.left = recurseNodes(node.left)
-      } else if (value > node.value) {
-        // if the value we want to remove is greater than the current node's value,
-        // we recurse to the right
-        node.right = recurseNodes(node.right)
-      } else {
-        if (node.left === null && node.right === null) {
-          // if the node has no children, we can just remove it
-          node = null
-        } else if (node.left == null) {
-          // if the node has only a right child, we can replace the node with its right child
-          node = node.right
-        } else if (node.right == null) {
-          // if the node has only a left child, we can replace the node with its left child
-          node = node.left
-        } else {
-          // if the node has two children, we find the minimum value in the right subtree
-          const minRight = node.right.findMin()
-
-          node.value = minRight.value
-          node.right = recurseNodes(node.right)
-        }
-      }
-
-      return node
-    }
-
-    recurseNodes(this._root)
+  public remove(value: Number): void {
+    this.removeRecursion(this._root, value)
   }
 }
