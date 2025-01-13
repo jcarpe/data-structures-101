@@ -96,7 +96,7 @@ export default class BinaryTree<Number> {
         const minRight = node.right.findMin()
 
         node.value = minRight.value
-        node.right = this.removeRecursion(node.right, value)
+        node.right = this.removeRecursion(node.right, minRight.value)
       }
     }
 
@@ -154,5 +154,29 @@ export default class BinaryTree<Number> {
    */
   public remove(value: Number): void {
     this.removeRecursion(this._root, value)
+  }
+
+  /**
+   * Prints the binary tree in a console-friendly format that clearly illustrates the tree structure.
+   * @returns {void}
+   */
+  public print(): void {
+    const printNode = (
+      node: Node<Number> | null,
+      prefix: string = '',
+      isLeft: boolean = true
+    ) => {
+      if (node !== null) {
+        console.log(prefix + (isLeft ? '├── ' : '└── ') + node.value)
+        printNode(node.left, prefix + (isLeft ? '│   ' : '    '), true)
+        printNode(node.right, prefix + (isLeft ? '│   ' : '    '), false)
+      }
+    }
+
+    if (this._root === null) {
+      console.log('Tree is empty')
+    } else {
+      printNode(this._root, '', true)
+    }
   }
 }

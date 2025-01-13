@@ -94,6 +94,8 @@ describe('BinaryTree', () => {
     tree.remove(15)
 
     expect(tree.root?.right?.value).toBe(18)
+    expect(tree.root?.right?.right?.value).toBe(20)
+    expect(tree.root?.right?.right?.left?.value).toBeUndefined() // <-- was 18
   })
 
   test('should handle removing a non-existent value gracefully', () => {
