@@ -46,7 +46,7 @@ class AVLTree<Number> {
 
     node.height = Math.max(node.left?.height ?? 0, node.right?.height ?? 0) + 1
 
-    const balance = (node.left?.height ?? 0) - (node.right?.height ?? 0)
+    const balance = this.getBalance(node)
 
     if (balance > 1 && node.left && node.value > node.left.value) {
       return this.rotateRight(node)
@@ -76,14 +76,11 @@ class AVLTree<Number> {
     if (!node) {
       return null
     } else if (node.value === value) {
-      // we found the node with the value we are looking for
       return node
     } else if (value < node.value) {
-      // traverse left
       return this.findRecursion(node.left, value)
     }
 
-    // traverse right
     return this.findRecursion(node.right, value)
   }
 
@@ -92,35 +89,64 @@ class AVLTree<Number> {
     value: Number
   ): AVLNode<Number> | null => {
     if (!node) {
-      return null
+      return node
     } else if (value < node.value) {
-      // if the value we want to remove is less than the current node's value,
-      // we recurse to the left
       node.left = this.removeRecursion(node.left, value)
     } else if (value > node.value) {
-      // if the value we want to remove is greater than the current node's value,
-      // we recurse to the right
       node.right = this.removeRecursion(node.right, value)
     } else {
       if (node.left === null && node.right === null) {
         // if the node has no children, we can just remove it
         node = null
       } else if (node.left == null) {
-        // if the node has only a right child, we can replace the node with its right child
         node = node.right
       } else if (node.right == null) {
-        // if the node has only a left child, we can replace the node with its left child
         node = node.left
       } else {
-        // if the node has two children, we find the minimum value in the right subtree
         const minRight = node.right.findMin()
 
         node.value = minRight.value
-        node.right = this.removeRecursion(node.right, value)
+        node.right = this.removeRecursion(node.right, minRight.value)
       }
     }
 
+    if (!node) {
+      return null
+    }
+
+    // rebalancing for deletion is different from insertion as
+    // we need to check the balance of the node after deletion
+    node.height = Math.max(node.left?.height ?? 0, node.right?.height ?? 0) + 1
+
+    const balance = this.getBalance(node)
+
+    if (balance > 1 && this.getBalance(node.left) >= 0) {
+      return this.rotateRight(node)
+    }
+
+    if (balance < -1 && this.getBalance(node.right) <= 0) {
+      return this.rotateLeft(node)
+    }
+
+    if (balance > 1 && node.left && this.getBalance(node.left) < 0) {
+      node.left = this.rotateLeft(node.left)
+      return this.rotateRight(node)
+    }
+
+    if (balance < -1 && node.right && this.getBalance(node.right) > 0) {
+      node.right = this.rotateRight(node.right)
+      return this.rotateLeft(node)
+    }
+
     return node
+  }
+
+  private getBalance(node: AVLNode<Number> | null): number {
+    if (!node) {
+      return 0
+    }
+
+    return (node.left?.height ?? 0) - (node.right?.height ?? 0)
   }
 
   private rotateRight(x: AVLNode<Number>): AVLNode<Number> {
