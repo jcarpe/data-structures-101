@@ -16,3 +16,5 @@ Notably, this is an academic exercise. Many of these data structures are redunda
 - [Hash Table](./src/hash-table)
 - [Binary Search Tree](./src/binary-tree)
 - [Binary Heap](./src/binary-heap) (example MIN implementation)
+- [AVL Tree](./src/avl-tree)
+- [Memoization](./src/memoization/)
