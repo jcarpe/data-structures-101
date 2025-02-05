@@ -1,4 +1,4 @@
-const memo: { [key: number]: number } = {}
+const memo: number[] = []
 
 export const fibonacci = (n: number): number => {
   if (n <= 0) return 0
