@@ -36,8 +36,4 @@ console.log(fibonacci(10)) // returns 55
 
 ## Notes
 
-- The function uses memoization to store previously computed Fibonacci numbers, which significantly improves performance for large values of `n`.
-
-## License
-
-This project is licensed under the MIT License.
+- The function uses memoization to store previously computed Fibonacci numbers, which significantly improves performance for large values of `n`. Retrieving a value in the nth position for the first time is `O(2^n)` (expensive), whereas after the initial compute it is memoized and becomes a simple array access for `O(1)` (fast).
