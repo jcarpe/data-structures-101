@@ -8,6 +8,8 @@ This just represents a bit of an academic exercise to build & illustrate basic d
 
 Notably, this is an academic exercise. Many of these data structures are redundant to what is already available in Javascript & Node, but are intended to illustrate basic data structure concepts.
 
+The examples are results of following the following course available on Udemy: https://www.udemy.com/course/data-structures-and-algorithms-bootcamp/
+
 ## Data Structures
 
 - [Linked List](./src/linked-list)
