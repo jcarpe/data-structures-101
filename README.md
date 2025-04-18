@@ -20,3 +20,4 @@ The examples are results of following the following course available on Udemy: h
 - [Binary Heap](./src/binary-heap) (example MIN implementation)
 - [AVL Tree](./src/avl-tree)
 - [Memoization](./src/memoization/)
+- [Adjacency List Graph](./src/graph/)
