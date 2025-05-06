@@ -68,4 +68,21 @@ describe('AdjacencyListGraph', () => {
       'Start vertex does not exist'
     )
   })
+
+  it('should perform a depth-first search from a given node (vertex)', () => {
+    const graph = new AdjacencyListGraph()
+    graph.addVertex('A')
+    graph.addVertex('B')
+    graph.addVertex('C')
+    graph.addVertex('D')
+    graph.addEdge('C', 'D')
+    graph.addEdge('A', 'B')
+    graph.addEdge('A', 'C')
+    expect(graph.depthSearch('A')).toEqual(['A', 'B', 'C', 'D'])
+    expect(graph.depthSearch('C')).toEqual(['C', 'D', 'A', 'B'])
+
+    expect(() => graph.breadthSearch('E')).toThrowError(
+      'Start vertex does not exist'
+    )
+  })
 })

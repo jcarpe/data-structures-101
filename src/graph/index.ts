@@ -150,4 +150,43 @@ export class AdjacencyListGraph {
 
     return result
   }
+
+  /**
+   * Performs a depth-first search (DFS) starting from a given vertex.
+   * @param {string} startVertex The vertex to start the DFS from.
+   * @returns {string[]} An array of vertices visited in DFS order.
+   * @throws Error if the start vertex does not exist.
+   * @example
+   * ```typescript
+   * const graph = new AdjacencyListGraph()
+   * graph.addVertex('A')
+   * graph.addVertex('B')
+   * graph.addVertex('C')
+   * graph.addEdge('A', 'B')
+   * graph.addEdge('A', 'C')
+   * console.log(graph.depthSearch('A')) // ['A', 'B', 'C']
+   * ```
+   */
+  depthSearch(startVertex: string): string[] {
+    if (!this.adjacencyList.has(startVertex)) {
+      throw new Error('Start vertex does not exist')
+    }
+
+    const visited = new Set<string>()
+    const result: string[] = []
+
+    const dfs = (vertex: string) => {
+      if (visited.has(vertex)) return
+      visited.add(vertex)
+      result.push(vertex)
+
+      const neighbors = this.adjacencyList.get(vertex)!
+      for (const neighbor of neighbors) {
+        dfs(neighbor)
+      }
+    }
+
+    dfs(startVertex)
+    return result
+  }
 }
