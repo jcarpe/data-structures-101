@@ -51,4 +51,21 @@ describe('AdjacencyListGraph', () => {
     const graph = new AdjacencyListGraph()
     expect(() => graph.getNeighbors('A')).toThrowError('Vertex does not exist')
   })
+
+  it('should perform a breadth-first search from a given node (vertex)', () => {
+    const graph = new AdjacencyListGraph()
+    graph.addVertex('A')
+    graph.addVertex('B')
+    graph.addVertex('C')
+    graph.addVertex('D')
+    graph.addEdge('A', 'B')
+    graph.addEdge('A', 'C')
+    graph.addEdge('C', 'D')
+    expect(graph.breadthSearch('A')).toEqual(['A', 'B', 'C', 'D'])
+    expect(graph.breadthSearch('C')).toEqual(['C', 'A', 'D', 'B'])
+
+    expect(() => graph.breadthSearch('E')).toThrowError(
+      'Start vertex does not exist'
+    )
+  })
 })

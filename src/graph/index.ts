@@ -107,4 +107,47 @@ export class AdjacencyListGraph {
     }
     return this.adjacencyList.get(vertex)!
   }
+
+  /**
+   * Performs a breadth-first search (BFS) starting from a given vertex.
+   * @param {string} startVertex The vertex to start the BFS from.
+   * @returns {string[]} An array of vertices visited in BFS order.
+   * @throws Error if the start vertex does not exist.
+   * @example
+   * ```typescript
+   * const graph = new AdjacencyListGraph()
+   * graph.addVertex('A')
+   * graph.addVertex('B')
+   * graph.addVertex('C')
+   * graph.addEdge('A', 'B')
+   * graph.addEdge('A', 'C')
+   * console.log(graph.breadthSearch('A')) // ['A', 'B', 'C']
+   * ```
+   */
+  breadthSearch(startVertex: string): string[] {
+    if (!this.adjacencyList.has(startVertex)) {
+      throw new Error('Start vertex does not exist')
+    }
+
+    const visited = new Set<string>()
+    const queue: string[] = [startVertex]
+    const result: string[] = []
+
+    while (queue.length > 0) {
+      const currentVertex = queue.shift()!
+      if (!visited.has(currentVertex)) {
+        visited.add(currentVertex)
+        result.push(currentVertex)
+
+        const neighbors = this.adjacencyList.get(currentVertex)!
+        for (const neighbor of neighbors) {
+          if (!visited.has(neighbor)) {
+            queue.push(neighbor)
+          }
+        }
+      }
+    }
+
+    return result
+  }
 }
